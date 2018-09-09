@@ -10,5 +10,14 @@ An android app use to urge the government to reduce pollution
 
 
 ## Screenshot
-![picture1](./app/screenshot/1.jpg)
-![picture2](./app/screenshot/2.jpg)
+
+<table align="center">
+    <tr>
+    <td>
+      <img src="./app/screenshot/1.jpg" width="30%" height="30%">
+    </td?
+    <td>
+      <img src="./app/screenshot/2.jpg" width="30%" height="30%">
+    </td?
+    </tr>
+</table>
