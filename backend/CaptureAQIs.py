@@ -33,6 +33,7 @@ import time
 import sys
 import random
 from bs4 import BeautifulSoup
+import records
 
 ua = UserAgent()
 def check_pre_update(CityList):
@@ -192,13 +193,10 @@ def download_data(CityList):
 
 def add_province(cities):
       t = []
-      with open("./city_province.json", "r") as input:
-          province = json.load(input)
-      for i in range(len(cities)):
-            row = cities.iloc[i, :]
-            city = row["area"]
-            t.append(province.get(city))
-      cities["province"] = t
+      with open("./city_code.json", "r") as input:
+          city_code = json.load(input)
+      province = cities["area"].apply(lambda city: city_code[city])
+      cities["province"] = province
 
 
 def update_to_pickle(data):
@@ -293,6 +291,12 @@ def log(infor):
             f.writelines(content)  # 然后将之前的旧日志附在后面
 
 
+query = "UPDATE aqi SET aqi={0} WHERE city = '{1}'; INSERT INTO aqi (city, province, aqi) SELECT '{1}', {2}, {0}  WHERE NOT EXISTS (SELECT 1 FROM aqi WHERE city = '{1}')"
+def write_db(cities):
+      for row in cities[["aqi","area","province",]].iterrows():
+            t = row[1]
+            db.query(query.format(t[0], t[1], t[2]))
+
 def main():
       # 要抓取的城市，这里以广东九市为例
       #CityList = ['guangzhou','zhaoqing','foshan','huizhou','dongguan',
@@ -308,16 +312,19 @@ def main():
       #time.sleep(random.uniform(1, 19))
 
       data = download_data(CityList)
+      add_province(data)
 
       # 如果data为空则无需update
-      if data!=None:
-            infor, updateData = data
-            update_to_pickle(updateData)
-            log(infor)
+      #if data!=None:
+    #        infor, updateData = data
+    #        update_to_pickle(updateData)
+    #        log(infor)
 
 
 if __name__ == '__main__':
       try:
+          while True:
+            time.sleep(60 * 60)
             main()
       except Exception:
             log('[Error] \n{}'.format(traceback.format_exc()))

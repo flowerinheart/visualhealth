@@ -9,6 +9,7 @@ Here is my plan.
 4. Build a android app to display air quality of each city and province. [In progress]
 5. Design a machine learning modle to predict future air quality. [Unfinshed]
 
+Now you just can run android app which load demo data, backend isn't finished.
 ## Techonology
 * Convert svg to canvas path structure
 * Canvas draw map
@@ -35,5 +36,5 @@ Here is my plan.
 * First page display air/water quality of each province.[Finished]
 * Second page display air/water quality of user's city in detail.[Unfinished]
 * Third page display news about air and water pollution.[Unfinished]
-* Fourth page display predicted air/waiter quality of next day and give some remind.[Unfinished]
+* Fourth page display predicted air/waiter quality of next dtay and give some remind.[Unfinished]
 * Fifth page show settings.[Unfinished]
