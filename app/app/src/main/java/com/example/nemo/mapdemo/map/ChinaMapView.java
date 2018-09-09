@@ -72,6 +72,7 @@ public class ChinaMapView extends View {
 
     //ARGB, each two number is a dimension
     private int[] colorArray = new int[]{0xFFd3ffce, 0xFFFFF68F, 0xFFFFc0cb, 0xFFcc0000};
+//    private int[] colorArray = new int[]{0xFF008000, 0xFFF6546a, 0xFF990000, 0xFF000000};
 
     private GestureDetectorCompat gestureDetectorCompat;
 
